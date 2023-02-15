@@ -23,4 +23,6 @@ Route::prefix("quiz")->group(function () {
     Route::get('{id}', [ QuizController::class, 'show' ]);
     Route::post('/publish', [ QuizController::class, 'publish' ]);
     Route::post('/draft', [ QuizController::class, 'draft' ]);
+    Route::get('/draft', [ QuizController::class, 'draftQuestions' ]);
+    Route::get('/publish', [ QuizController::class, 'publishedQuestions' ]);
 });

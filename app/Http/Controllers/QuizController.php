@@ -14,6 +14,25 @@ use Illuminate\Support\Facades\Validator;
 
 class QuizController extends Controller
 {
+    /**
+     *  Display all draft questions
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function draftQuestions(): \Illuminate\Http\JsonResponse
+    {
+        $quiz = Quiz::where('published', false)->limit(10)->get();
+        return response()->json(Helper::formatStandardApiResponse(true, null, $quiz));
+    }
+
+    /**
+     * Display all published questions
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function publishedQuestions(): \Illuminate\Http\JsonResponse
+    {
+        $quiz = Quiz::where('published', true)->limit(10)->get();
+        return response()->json(Helper::formatStandardApiResponse(true, null, $quiz));
+    }
 
     /**
      * Save data as draft.
