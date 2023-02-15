@@ -115,4 +115,14 @@ class QuizController extends Controller
         }
         return response()->json(Helper::formatStandardApiResponse(true, null, $quiz, "Quiz published successfully"));
     }
+    public function show(string $id)
+    {
+        try {
+            $quiz = Quiz::with('questions.options')->findOrFail($id);
+            return response()->json(Helper::formatStandardApiResponse(true, null, $quiz));
+        } catch (ModelNotFoundException $e) {
+            return response()->json(Helper::formatStandardApiResponse(false, ['no result found'], null));
+        }
+
+    }
 }
