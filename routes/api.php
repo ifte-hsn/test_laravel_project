@@ -20,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix("quiz")->group(function () {
+    Route::post('/publish', [ QuizController::class, 'publish' ]);
     Route::post('/draft', [ QuizController::class, 'draft' ]);
 });
